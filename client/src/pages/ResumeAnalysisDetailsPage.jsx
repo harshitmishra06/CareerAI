@@ -34,7 +34,7 @@ export default function ResumeAnalysisDetailsPage() {
       setError(null);
       try {
         const response = await resumeAnalysisApi.getById(id);
-        setAnalysis(response.data?.analysis);
+        setAnalysis(response.data?.analysis || response.data);
       } catch (err) {
         setError(err.message || 'Unable to retrieve the requested AI analysis.');
       } finally {

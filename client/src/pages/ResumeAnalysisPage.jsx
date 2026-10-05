@@ -58,10 +58,21 @@ export default function ResumeAnalysisPage() {
           resumeAnalysisApi.getMyAnalyses().catch(() => ({ data: { analyses: [] } }))
         ]);
 
-        const readyResumes = (resumesRes.data?.resumes || []).filter((r) => r.status === 'ready');
+        const readyResumes = (
+          Array.isArray(resumesRes.data)
+            ? resumesRes.data
+            : resumesRes.data?.resumes || []
+        ).filter((r) => r.status === 'ready');
         setResumes(readyResumes);
-        setJobs(jobsRes.data?.jobs || []);
-        const loadedAnalyses = analysesRes.data?.analyses || [];
+
+        const loadedJobs = Array.isArray(jobsRes.data)
+          ? jobsRes.data
+          : jobsRes.data?.jobs || [];
+        setJobs(loadedJobs);
+
+        const loadedAnalyses = Array.isArray(analysesRes.data)
+          ? analysesRes.data
+          : analysesRes.data?.analyses || [];
         setPreviousAnalyses(loadedAnalyses);
 
         // Preselect default resume if none specified
@@ -123,12 +134,15 @@ export default function ResumeAnalysisPage() {
         jobId: selectedJobId
       });
 
-      const analysis = response.data?.analysis;
+      const analysis = response.data?.analysis || response.data;
       setCurrentAnalysis(analysis);
 
       // Refresh recent analyses
       const refreshed = await resumeAnalysisApi.getMyAnalyses();
-      setPreviousAnalyses(refreshed.data?.analyses || []);
+      const updatedAnalyses = Array.isArray(refreshed.data)
+        ? refreshed.data
+        : refreshed.data?.analyses || [];
+      setPreviousAnalyses(updatedAnalyses);
 
       // Scroll smoothly to results
       setTimeout(() => {
