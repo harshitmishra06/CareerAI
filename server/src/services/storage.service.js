@@ -114,6 +114,7 @@ export class StorageService {
         const uploadStream = cloudinary.uploader.upload_stream(
           {
             resource_type: 'raw',
+            access_mode: 'public',
             public_id: uniqueKey,
             folder: 'careerai/resumes',
             format: 'pdf'
@@ -214,8 +215,23 @@ export class StorageService {
 
     // 2. Cloudinary Storage
     if (storageProvider === 'cloudinary') {
+      this.configureCloudinary();
       try {
-        const response = await fetch(fileUrl);
+        let targetUrl = fileUrl;
+        if (storagePublicId && ENV.CLOUDINARY_API_KEY && ENV.CLOUDINARY_API_SECRET) {
+          try {
+            targetUrl = cloudinary.utils.private_download_url(storagePublicId, 'pdf', {
+              resource_type: 'raw'
+            });
+          } catch {
+            targetUrl = fileUrl;
+          }
+        }
+
+        let response = await fetch(targetUrl);
+        if (!response.ok && targetUrl !== fileUrl) {
+          response = await fetch(fileUrl);
+        }
         if (!response.ok) {
           throw new Error(`Failed to fetch from Cloudinary: ${response.statusText}`);
         }
