@@ -22,6 +22,17 @@ import dashboardRoutes from './routes/dashboard.routes.js';
 
 const app = express();
 
+// Trust reverse proxy (mandatory for Render, Cloudflare, AWS, Heroku SSL termination & client IP resolution)
+app.set('trust proxy', 1);
+
+// Backward-compatibility URL rewrite: automatically routes /v1/api/* requests to /api/v1/*
+app.use((req, res, next) => {
+  if (req.url.startsWith('/v1/api')) {
+    req.url = req.url.replace(/^\/v1\/api/, '/api/v1');
+  }
+  next();
+});
+
 // Security HTTP headers with clickjacking, MIME-sniffing, and resource protection
 app.use(
   helmet({
