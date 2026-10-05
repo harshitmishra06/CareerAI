@@ -9,6 +9,9 @@ export const registerUser = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const response = await authApi.register(formData);
+      if (response.data?.token) {
+        localStorage.setItem('careerai_token', response.data.token);
+      }
       return response.data.user;
     } catch (err) {
       return rejectWithValue(err.message || 'Registration failed. Please try again.');
@@ -24,6 +27,9 @@ export const loginUser = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await authApi.login(credentials);
+      if (response.data?.token) {
+        localStorage.setItem('careerai_token', response.data.token);
+      }
       return response.data.user;
     } catch (err) {
       return rejectWithValue(err.message || 'Login failed. Please check your credentials.');
@@ -32,7 +38,7 @@ export const loginUser = createAsyncThunk(
 );
 
 /**
- * Async Thunk: Fetch currently authenticated user via session cookie
+ * Async Thunk: Fetch currently authenticated user via session cookie or Bearer token
  */
 export const fetchCurrentUser = createAsyncThunk(
   'auth/fetchCurrentUser',
@@ -41,6 +47,7 @@ export const fetchCurrentUser = createAsyncThunk(
       const response = await authApi.getMe();
       return response.data.user;
     } catch (err) {
+      localStorage.removeItem('careerai_token');
       return rejectWithValue(err.message || 'Session expired or unauthenticated');
     }
   }
@@ -54,10 +61,12 @@ export const logoutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await authApi.logout();
-      return null;
     } catch (err) {
-      return rejectWithValue(err.message || 'Logout failed');
+      // Continue cleanup even if server request fails
+    } finally {
+      localStorage.removeItem('careerai_token');
     }
+    return null;
   }
 );
 

@@ -25,8 +25,9 @@ export const verifyToken = (token) => {
  * In development or testing, defaults to Lax and non-secure to allow local HTTP operation.
  */
 export const getCookieOptions = () => {
-  const isProduction = ENV.NODE_ENV === 'production';
-  const sameSite = ENV.COOKIE_SAME_SITE || (isProduction ? 'none' : 'lax');
+  const isProduction = ENV.NODE_ENV === 'production' || process.env.RENDER === 'true';
+  const isCrossSite = (ENV.CLIENT_URL && ENV.CLIENT_URL.startsWith('https://')) || isProduction;
+  const sameSite = ENV.COOKIE_SAME_SITE || (isCrossSite ? 'none' : 'lax');
   const secure = sameSite === 'none' ? true : isProduction;
 
   return {

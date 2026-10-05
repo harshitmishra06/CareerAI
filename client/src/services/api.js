@@ -16,6 +16,17 @@ export const apiClient = axios.create({
   }
 });
 
+// Request interceptor: attach Bearer token from localStorage for cross-site browser fallback
+apiClient.interceptors.request.use((config) => {
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('careerai_token');
+    if (token && !config.headers.Authorization) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  }
+  return config;
+});
+
 // Response interceptor for unified response handling
 apiClient.interceptors.response.use(
   (response) => response.data,
