@@ -1,0 +1,175 @@
+/* CareerAI Application Styles */
+
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-section {
+  padding: 5rem 0 3rem;
+  text-align: center;
+  position: relative;
+}
+
+.hero-badge {
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--glass-border);
+  font-size: 0.85rem;
+  margin-bottom: 2.5rem;
+  backdrop-filter: blur(8px);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-indicator.online {
+  background: var(--accent-emerald);
+  box-shadow: 0 0 10px var(--accent-emerald);
+}
+
+.status-indicator.checking {
+  background: var(--accent-amber);
+  box-shadow: 0 0 10px var(--accent-amber);
+}
+
+.status-indicator.offline {
+  background: var(--accent-rose);
+  box-shadow: 0 0 10px var(--accent-rose);
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.portal-card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.portal-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--primary-400);
+  border: 1px solid rgba(124, 58, 237, 0.25);
+}
+
+.portal-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.65rem;
+}
+
+.portal-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.feature-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.feature-list li {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.feature-list li svg {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+}
+
+.roadmap-section {
+  padding: 4rem 0;
+  margin-top: 2rem;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.phase-item {
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  transition: all var(--transition-fast);
+}
+
+.phase-item.active {
+  border-color: var(--primary-500);
+  background: rgba(124, 58, 237, 0.08);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
+}
+
+.phase-item.completed {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.phase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.phase-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.phase-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

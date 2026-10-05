@@ -1,0 +1,71 @@
+:root {
+  /* Brand Palette - Modern Futuristic Violet/Indigo + Cyan Accent */
+  --primary-50: #f5f3ff;
+  --primary-100: #ede9fe;
+  --primary-200: #ddd6fe;
+  --primary-300: #c4b5fd;
+  --primary-400: #a78bfa;
+  --primary-500: #8b5cf6;
+  --primary-600: #7c3aed;
+  --primary-700: #6d28d9;
+  --primary-800: #5b21b6;
+  --primary-900: #4c1d95;
+
+  /* Accent - Cyber Cyan / Emerald */
+  --accent-cyan: #06b6d4;
+  --accent-cyan-glow: rgba(6, 182, 212, 0.35);
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+
+  /* Gradients */
+  --grad-primary: linear-gradient(135deg, #7c3aed 0%, #3b82f6 50%, #06b6d4 100%);
+  --grad-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --grad-glow: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+  --grad-card-border: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
+
+  /* Dark Theme Surfaces (Default) */
+  --bg-app: #090d16;
+  --bg-surface: #0f172a;
+  --bg-surface-elevated: #1e293b;
+  --bg-surface-hover: #273549;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(15, 23, 42, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  /* Typography Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #090d16;
+
+  /* Typography Scales */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
